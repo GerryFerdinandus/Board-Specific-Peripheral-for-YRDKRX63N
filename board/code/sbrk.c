@@ -36,11 +36,13 @@ Includes   <System Includes> , "Project Includes"
 /* Defines standard variable types used in this file */
 #include <stdint.h>
 
+#include "sbrk.h"
+
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
 /* Size of area managed by sbrk */
-#define HEAPSIZE 0x400
+//#define HEAPSIZE 0x1000
 
 /***********************************************************************************************************************
 Function Prototypes
@@ -53,7 +55,7 @@ Global Variables
 ***********************************************************************************************************************/
 //const size_t _sbrk_size=      /* Specifies the minimum unit of */
 /* the defined heap area */
-extern int8_t *_s1ptr;
+//extern int8_t *_s1ptr;
 
 union HEAP_TYPE
 {

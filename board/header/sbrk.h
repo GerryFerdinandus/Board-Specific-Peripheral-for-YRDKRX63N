@@ -33,9 +33,10 @@ Macro definitions
 #ifndef SBRK_H
 #define SBRK_H
 
+#ifndef HEAPSIZE
 /* Size of area managed by sbrk */
-#define HEAPSIZE 0x400
-
+#define HEAPSIZE 0x1000
+#endif
 
 /* End of mutliple inclusion prevention macro */
 #endif
