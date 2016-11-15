@@ -20,6 +20,9 @@ install:
 script:
 # Export path to the gcc compiler in folder prefix
   - export PATH="$PWD/prefix/bin:$PATH"
+# Show the GCC version
+  - rx-elf-gcc --version
+# Start building the program
   - make clean
   - make
 
