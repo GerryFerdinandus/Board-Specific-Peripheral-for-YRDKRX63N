@@ -8,6 +8,16 @@ sudo: false
 os:
   - linux
 
+env:
+  global:
+  # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+  #   via the "travis encrypt" command using the project repo's public key
+  - secure: "q/GtQ2nydTfeqsM69+352VDIkK8PV8ZMFm4fHstCNScQkJsTH9MNFa5L7uiICDJPXm/0a1NIR2OQGccarN84OMU0lnw41SSbKZZ8nFTs1vA0XgRgd15wKy4cZs9nKqlC3FiDgkFzB8IaP+Q4YFNmooWKwlS909sm8w+VQbW7U/T6OBzjeWXlVhTxWUevxiIj2o0MAlSb2NmCv2dxaE93DmEZdSvRaX41A9S03TNFA+/I7JVyDLMLd1a/VcfK1nrtuOqTPxPEzMwDw8zslobIIKM5iLJkeeE65pEw/GIdTf5A9BtsofRvKRrhGa8/QUlDCzTGzkBWLGZxfBCmW1FrR0OTd+Qo6W23Lsbmn3zSomKosh7Heg5PC2PSiTPUxTh2dwIvL0tnpComgLR0SE+Js61WbcnXzomI46jGvoiH3YPdH1lIrMC6R1Z7konwLV45y/D3vXu1gTw+Km6CTQnUh8/Z6oeqfuTS8agWrPXscT+Z2EnuqdaS/aee6sKjKK+mtjrbh1f8sFcTWg8KN2Yt1RpmOWjuJ+NJ+dErSGlKGtPlzDtY3nJgz5u8cTlGnsId6WSChmFp0omZEVYDCa34AeSBDmag/F3j/YxN+I4staHQ6sGxdO2a8HY59SPRsmqK5KXRx6irKdmZ3EMY9Pr6Jz67zTw4rZsZQtFP3fYNuq8="
+  - COVERITY_SCAN_BRANCH_PATTERN="coverity_scan"
+  - COVERITY_SCAN_NOTIFICATION_EMAIL="$EMAIL_PRIVATE"
+  - COVERITY_SCAN_BUILD_COMMAND="make"
+  - COVERITY_SCAN_PROJECT_NAME="$TRAVIS_REPO_SLUG"
+
 before_install:
 # download the Renesas RX gcc compiler file
   - wget -O gcc_rx.tar.xz https://github.com/GerryFerdinandus/Renesas-RX-GCC/releases/download/V4.8.0.201603/gcc_rx.tar.xz
@@ -25,6 +35,9 @@ script:
 # Start building the program
   - make clean
   - make
+# Start coverity scan
+  - make clean
+  - source ./scripts/travisci_build_coverity_scan.sh
 
 # No need to get all the GIT history
 git:
