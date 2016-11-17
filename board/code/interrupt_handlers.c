@@ -320,16 +320,16 @@ void INT_Excep_TPU6_TGI6C(void){ }
 void INT_Excep_TPU6_TGI6D(void){ }
 
 /* MTU0 TGIA0*/
-void INT_Excep_MTU0_TGIA0(void){ }
+//void INT_Excep_MTU0_TGIA0(void){ }
 
 /* MTU0 TGIB0*/
-void INT_Excep_MTU0_TGIB0(void){ }
+//void INT_Excep_MTU0_TGIB0(void){ }
 
 /* MTU0 TGIC0*/
-void INT_Excep_MTU0_TGIC0(void){ }
+//void INT_Excep_MTU0_TGIC0(void){ }
 
 /* MTU0 TGID0*/
-void INT_Excep_MTU0_TGID0(void){ }
+//void INT_Excep_MTU0_TGID0(void){ }
 
 /* MTU0 TGIE0*/
 void INT_Excep_MTU0_TGIE0(void){ }
@@ -344,10 +344,10 @@ void INT_Excep_TPU7_TGI7A(void){ }
 void INT_Excep_TPU7_TGI7B(void){ }
 
 /* MTU1 TGIA1*/
-void INT_Excep_MTU1_TGIA1(void){ }
+//void INT_Excep_MTU1_TGIA1(void){ }
 
 /* MTU1 TGIB1*/
-void INT_Excep_MTU1_TGIB1(void){ }
+//void INT_Excep_MTU1_TGIB1(void){ }
 
 /* TPU8 TGI8A*/
 void INT_Excep_TPU8_TGI8A(void){ }
@@ -356,10 +356,10 @@ void INT_Excep_TPU8_TGI8A(void){ }
 void INT_Excep_TPU8_TGI8B(void){ }
 
 /* MTU2 TGIA2*/
-void INT_Excep_MTU2_TGIA2(void){ }
+//void INT_Excep_MTU2_TGIA2(void){ }
 
 /* MTU2 TGIB2*/
-void INT_Excep_MTU2_TGIB2(void){ }
+//void INT_Excep_MTU2_TGIB2(void){ }
 
 /* TPU9 TGI9A*/
 void INT_Excep_TPU9_TGI9A(void){ }
@@ -374,16 +374,16 @@ void INT_Excep_TPU9_TGI9C(void){ }
 void INT_Excep_TPU9_TGI9D(void){ }
 
 /* MTU3 TGIA3*/
-void INT_Excep_MTU3_TGIA3(void){ }
+//void INT_Excep_MTU3_TGIA3(void){ }
 
 /* MTU3 TGIB3*/
-void INT_Excep_MTU3_TGIB3(void){ }
+//void INT_Excep_MTU3_TGIB3(void){ }
 
 /* MTU3 TGIC3*/
-void INT_Excep_MTU3_TGIC3(void){ }
+//void INT_Excep_MTU3_TGIC3(void){ }
 
 /* MTU3 TGID3*/
-void INT_Excep_MTU3_TGID3(void){ }
+//void INT_Excep_MTU3_TGID3(void){ }
 
 /* TPU10 TGI10A*/
 void INT_Excep_TPU10_TGI10A(void){ }
@@ -392,10 +392,10 @@ void INT_Excep_TPU10_TGI10A(void){ }
 void INT_Excep_TPU10_TGI10B(void){ }
 
 /* MTU4 TGIA4*/
-void INT_Excep_MTU4_TGIA4(void){ }
+//void INT_Excep_MTU4_TGIA4(void){ }
 
 /* MTU4 TGIB4*/
-void INT_Excep_MTU4_TGIB4(void){ }
+//void INT_Excep_MTU4_TGIB4(void){ }
 
 /* MTU4 TGIC4*/
 void INT_Excep_MTU4_TGIC4(void){ }
