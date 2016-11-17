@@ -8,7 +8,7 @@
 #ifndef __GLYPH__CONFIG_H
 #define __GLYPH__CONFIG_H
 
-#include "Preamble.h"
+#include "preamble.h"
 
 #define VERSION_MAJOR           2
 #define VERSION_MINOR           0

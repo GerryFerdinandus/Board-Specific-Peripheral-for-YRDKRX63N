@@ -33,7 +33,7 @@ Includes   <System Includes> , "Project Includes"
 #include <stdint.h>
 #include <stdbool.h>
 /* Glyph code header file. */
-#include "Glyph.h"
+#include "glyph.h"
 /* MCU and board headers. */
 #include "platform.h"
 /* RSPI R-package header file. */

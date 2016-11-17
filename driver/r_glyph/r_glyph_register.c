@@ -30,9 +30,9 @@
 Includes   <System Includes> , "Project Includes"
 ***********************************************************************************************************************/
 /* Glyph code header file. */
-#include "Glyph.h"
+#include "glyph.h"
 /* Used for LCD. */
-#include "ST7579_LCD.h"
+#include "st7579_lcd.h"
 /* Used for communicating with LCD. */
 #include "r_glyph.h"
 

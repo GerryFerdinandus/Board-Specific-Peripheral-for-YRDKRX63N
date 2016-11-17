@@ -42,8 +42,8 @@ INCLUDE APPROPRIATE MCU AND BOARD FILES
 #include    "iodefine.h"
 //#include    ".\board\rdkrx63n\yrdkrx63n.h"
 #include    "yrdkrx63n.h"
-#include    ".\board\rdkrx63n\mcu_info.h"
-#include    ".\board\rdkrx63n\hwsetup.h"
+#include    "./board/rdkrx63n/mcu_info.h"
+#include    "./board/rdkrx63n/hwsetup.h"
 #include    "lcd.h"
 //#include    ".\board\rdkrx63n\sbrk.h"
 
