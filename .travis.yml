@@ -35,6 +35,8 @@ script:
 # Start building the program
   - make clean
   - make
+
+after_script:
 # Start coverity scan
   - make clean
   - source ./scripts/travisci_build_coverity_scan.sh
