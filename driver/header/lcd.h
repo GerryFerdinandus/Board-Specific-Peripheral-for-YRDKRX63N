@@ -57,7 +57,7 @@ Exported global functions (to be accessed by other files)
 void lcd_initialize (void);
 
 /* Update display function declaration */
-void lcd_display (uint8_t, const uint8_t *);
+void lcd_display (uint8_t, const char *);
 
 /* LCD write function delcaration */
 void lcd_write (uint8_t, uint8_t);
