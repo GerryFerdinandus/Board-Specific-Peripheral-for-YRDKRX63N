@@ -5,7 +5,7 @@ wget -O gcc_rx.tar.xz https://github.com/GerryFerdinandus/Renesas-RX-GCC/release
 
 # extract the gcc compiler to folder prefix
 mkdir prefix
-tar -xvf gcc_rx.tar.xz -C prefix --strip-components 1
+tar -xf gcc_rx.tar.xz -C prefix --strip-components 1
 
 # Export path to the gcc compiler in folder prefix
 export PATH="$PWD/prefix/bin:$PATH"
@@ -15,7 +15,7 @@ rx-elf-gcc --version
 
 # Start building the program. Stop when error in 'make' is detected.
 make clean
-make || 1
+make || exit 1
 
 # Start coverity scan
 make clean
