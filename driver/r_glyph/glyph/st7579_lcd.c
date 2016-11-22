@@ -262,7 +262,7 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
             for (page=0; page<height; page+=8)  {
                 ST7579_SetPage(aHandle, (uint8_t)((p_gw->iLCDAPI->iCharY_Position+page)>>3));
                 ST7579_SetChar(aHandle, (uint8_t)p_gw->iLCDAPI->iCharX_Position);
-                for (column=0; column<width; column++, p_charData++)    {
+                for (column=0; column<width; column++)    {
                     p_gw->iCommAPI->iDataSend(0x00);
                 }
             }
