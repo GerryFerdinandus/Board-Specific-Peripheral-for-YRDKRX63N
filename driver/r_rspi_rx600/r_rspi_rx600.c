@@ -336,7 +336,9 @@ bool R_RSPI_Init(uint8_t channel)
 
 #endif
     }
-    else if (3 == channel)
+
+#if RSPI_NUM_CHANNELS == 3
+    else
     {
 
 #if defined(MCU_RX63N) || defined(MCU_RX630) || defined(MCU_RX631)
@@ -397,6 +399,7 @@ bool R_RSPI_Init(uint8_t channel)
         PORTD.PDR.BIT.B7 = 1;
 #endif
     }
+#endif
     
     /* Set pin control register (SPPCR) */
     (*g_rspi_channels[channel]).SPPCR.BYTE = 0x00;
