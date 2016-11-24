@@ -35,7 +35,7 @@
 ******************************************************************************/
 
 /******************************************************************************
-Includes “Glyph config Include”
+Includes "Glyph config Include"
 ******************************************************************************/
 #include "glyph_config.h"
 
@@ -547,135 +547,8 @@ const uint8_t Fontx5x7_char_126[] = {
     0x05, 0x07, // width=5, height=7
     0x02, 0x01, 0x02, 0x01, 0x00, 
 };
-// const uint8_t Fontx5x7_char_127[] = {};
-// const uint8_t Fontx5x7_char_128[] = {};
-// const uint8_t Fontx5x7_char_129[] = {};
-// const uint8_t Fontx5x7_char_130[] = {};
-// const uint8_t Fontx5x7_char_131[] = {};
-// const uint8_t Fontx5x7_char_132[] = {};
-// const uint8_t Fontx5x7_char_133[] = {};
-// const uint8_t Fontx5x7_char_134[] = {};
-// const uint8_t Fontx5x7_char_135[] = {};
-// const uint8_t Fontx5x7_char_136[] = {};
-// const uint8_t Fontx5x7_char_137[] = {};
-// const uint8_t Fontx5x7_char_138[] = {};
-// const uint8_t Fontx5x7_char_139[] = {};
-// const uint8_t Fontx5x7_char_140[] = {};
-// const uint8_t Fontx5x7_char_141[] = {};
-// const uint8_t Fontx5x7_char_142[] = {};
-// const uint8_t Fontx5x7_char_143[] = {};
-// const uint8_t Fontx5x7_char_144[] = {};
-// const uint8_t Fontx5x7_char_145[] = {};
-// const uint8_t Fontx5x7_char_146[] = {};
-// const uint8_t Fontx5x7_char_147[] = {};
-// const uint8_t Fontx5x7_char_148[] = {};
-// const uint8_t Fontx5x7_char_149[] = {};
-// const uint8_t Fontx5x7_char_150[] = {};
-// const uint8_t Fontx5x7_char_151[] = {};
-// const uint8_t Fontx5x7_char_152[] = {};
-// const uint8_t Fontx5x7_char_153[] = {};
-// const uint8_t Fontx5x7_char_154[] = {};
-// const uint8_t Fontx5x7_char_155[] = {};
-// const uint8_t Fontx5x7_char_156[] = {};
-// const uint8_t Fontx5x7_char_157[] = {};
-// const uint8_t Fontx5x7_char_158[] = {};
-// const uint8_t Fontx5x7_char_159[] = {};
-// const uint8_t Fontx5x7_char_160[] = {};
-// const uint8_t Fontx5x7_char_161[] = {};
-// const uint8_t Fontx5x7_char_162[] = {};
-// const uint8_t Fontx5x7_char_163[] = {};
-// const uint8_t Fontx5x7_char_164[] = {};
-// const uint8_t Fontx5x7_char_165[] = {};
-// const uint8_t Fontx5x7_char_166[] = {};
-// const uint8_t Fontx5x7_char_167[] = {};
-// const uint8_t Fontx5x7_char_168[] = {};
-// const uint8_t Fontx5x7_char_169[] = {};
-// const uint8_t Fontx5x7_char_170[] = {};
-// const uint8_t Fontx5x7_char_171[] = {};
-// const uint8_t Fontx5x7_char_172[] = {};
-// const uint8_t Fontx5x7_char_173[] = {};
-// const uint8_t Fontx5x7_char_174[] = {};
-// const uint8_t Fontx5x7_char_175[] = {};
-// const uint8_t Fontx5x7_char_176[] = {};
-// const uint8_t Fontx5x7_char_177[] = {};
-// const uint8_t Fontx5x7_char_178[] = {};
-// const uint8_t Fontx5x7_char_179[] = {};
-// const uint8_t Fontx5x7_char_180[] = {};
-// const uint8_t Fontx5x7_char_181[] = {};
-// const uint8_t Fontx5x7_char_182[] = {};
-// const uint8_t Fontx5x7_char_183[] = {};
-// const uint8_t Fontx5x7_char_184[] = {};
-// const uint8_t Fontx5x7_char_185[] = {};
-// const uint8_t Fontx5x7_char_186[] = {};
-// const uint8_t Fontx5x7_char_187[] = {};
-// const uint8_t Fontx5x7_char_188[] = {};
-// const uint8_t Fontx5x7_char_189[] = {};
-// const uint8_t Fontx5x7_char_190[] = {};
-// const uint8_t Fontx5x7_char_191[] = {};
-// const uint8_t Fontx5x7_char_192[] = {};
-// const uint8_t Fontx5x7_char_193[] = {};
-// const uint8_t Fontx5x7_char_194[] = {};
-// const uint8_t Fontx5x7_char_195[] = {};
-// const uint8_t Fontx5x7_char_196[] = {};
-// const uint8_t Fontx5x7_char_197[] = {};
-// const uint8_t Fontx5x7_char_198[] = {};
-// const uint8_t Fontx5x7_char_199[] = {};
-// const uint8_t Fontx5x7_char_200[] = {};
-// const uint8_t Fontx5x7_char_201[] = {};
-// const uint8_t Fontx5x7_char_202[] = {};
-// const uint8_t Fontx5x7_char_203[] = {};
-// const uint8_t Fontx5x7_char_204[] = {};
-// const uint8_t Fontx5x7_char_205[] = {};
-// const uint8_t Fontx5x7_char_206[] = {};
-// const uint8_t Fontx5x7_char_207[] = {};
-// const uint8_t Fontx5x7_char_208[] = {};
-// const uint8_t Fontx5x7_char_209[] = {};
-// const uint8_t Fontx5x7_char_210[] = {};
-// const uint8_t Fontx5x7_char_211[] = {};
-// const uint8_t Fontx5x7_char_212[] = {};
-// const uint8_t Fontx5x7_char_213[] = {};
-// const uint8_t Fontx5x7_char_214[] = {};
-// const uint8_t Fontx5x7_char_215[] = {};
-// const uint8_t Fontx5x7_char_216[] = {};
-// const uint8_t Fontx5x7_char_217[] = {};
-// const uint8_t Fontx5x7_char_218[] = {};
-// const uint8_t Fontx5x7_char_219[] = {};
-// const uint8_t Fontx5x7_char_220[] = {};
-// const uint8_t Fontx5x7_char_221[] = {};
-// const uint8_t Fontx5x7_char_222[] = {};
-// const uint8_t Fontx5x7_char_223[] = {};
-// const uint8_t Fontx5x7_char_224[] = {};
-// const uint8_t Fontx5x7_char_225[] = {};
-// const uint8_t Fontx5x7_char_226[] = {};
-// const uint8_t Fontx5x7_char_227[] = {};
-// const uint8_t Fontx5x7_char_228[] = {};
-// const uint8_t Fontx5x7_char_229[] = {};
-// const uint8_t Fontx5x7_char_230[] = {};
-// const uint8_t Fontx5x7_char_231[] = {};
-// const uint8_t Fontx5x7_char_232[] = {};
-// const uint8_t Fontx5x7_char_233[] = {};
-// const uint8_t Fontx5x7_char_234[] = {};
-// const uint8_t Fontx5x7_char_235[] = {};
-// const uint8_t Fontx5x7_char_236[] = {};
-// const uint8_t Fontx5x7_char_237[] = {};
-// const uint8_t Fontx5x7_char_238[] = {};
-// const uint8_t Fontx5x7_char_239[] = {};
-// const uint8_t Fontx5x7_char_240[] = {};
-// const uint8_t Fontx5x7_char_241[] = {};
-// const uint8_t Fontx5x7_char_242[] = {};
-// const uint8_t Fontx5x7_char_243[] = {};
-// const uint8_t Fontx5x7_char_244[] = {};
-// const uint8_t Fontx5x7_char_245[] = {};
-// const uint8_t Fontx5x7_char_246[] = {};
-// const uint8_t Fontx5x7_char_247[] = {};
-// const uint8_t Fontx5x7_char_248[] = {};
-// const uint8_t Fontx5x7_char_249[] = {};
-// const uint8_t Fontx5x7_char_250[] = {};
-// const uint8_t Fontx5x7_char_251[] = {};
-// const uint8_t Fontx5x7_char_252[] = {};
-// const uint8_t Fontx5x7_char_253[] = {};
-// const uint8_t Fontx5x7_char_254[] = {};
-// const uint8_t Fontx5x7_char_255[] = {};
+
+/* char 127..255 are skip */
 
 const unsigned char *Fontx5x7_table[256] = {
     Fontx5x7_char_0,

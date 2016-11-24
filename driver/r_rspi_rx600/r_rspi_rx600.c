@@ -406,7 +406,7 @@ bool R_RSPI_Init(uint8_t channel)
 
     /* Set RSPI bit rate (SPBR) */
     /* -Set baud rate to 8Mbps (48MHz / (2 * (2 + 1) * 2^0) ) = 8Mbps */
-    (*g_rspi_channels[channel]).SPBR = 30; /* (*g_rspi_channels[channel]).SPBR.BYTE = 30; */
+    (*g_rspi_channels[channel]).SPBR = 30;
 
     /* Set RSPI data control register (SPDCR) */
     /* -SPDR is accessed in longwords (32 bits) 

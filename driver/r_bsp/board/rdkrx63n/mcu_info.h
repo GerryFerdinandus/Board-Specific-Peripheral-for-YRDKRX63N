@@ -28,8 +28,8 @@
 *         : 26.10.2011 1.00     First Release
 ***********************************************************************************************************************/
 
-#ifndef _MCU_INFO
-#define _MCU_INFO
+#ifndef MCU_INFO_
+#define MCU_INFO_
 
 /* MCU that is used. */
 #define MCU_RX63N           (1)
@@ -51,5 +51,5 @@
 /* FlashIF clock speed in Hz. */
 #define FCLK_HZ             (48000000)
 
-#endif /* _MCU_INFO */
+#endif /* MCU_INFO_ */
 

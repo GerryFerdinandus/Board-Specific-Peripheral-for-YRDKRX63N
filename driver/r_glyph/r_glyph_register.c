@@ -53,18 +53,16 @@ T_glyphError GlyphCommOpen(T_glyphHandle aHandle, uint32_t aAddress)
 {
     T_glyphWorkspace *p_gw = (T_glyphWorkspace *)aHandle;
 
-    switch (aAddress) {
-        case 0:
-            /* Set function pointers for Glyph code. */
-            p_gw->iCommAPI->iOpen = R_GLYPH_Open;
-            p_gw->iCommAPI->iCommandSend = R_GLYPH_CommandSend ;
-            p_gw->iCommAPI->iDataSend = R_GLYPH_DataSend ;		
-            break ;
-        default:
-            return GLYPH_ERROR_ILLEGAL_OPERATION ;
+    if(aAddress == 0){
+        /* Set function pointers for Glyph code. */
+        p_gw->iCommAPI->iOpen = &R_GLYPH_Open;
+        p_gw->iCommAPI->iCommandSend = &R_GLYPH_CommandSend ;
+        p_gw->iCommAPI->iDataSend = &R_GLYPH_DataSend ;
+        return p_gw->iCommAPI->iOpen(aHandle) ;
+    }else
+    {
+        return GLYPH_ERROR_ILLEGAL_OPERATION ;
     }
-
-    return p_gw->iCommAPI->iOpen(aHandle) ;
 }
 
 /***********************************************************************************************************************
@@ -84,18 +82,15 @@ T_glyphError GlyphLCDOpen(T_glyphHandle aHandle, uint32_t aAddress)
 {
     T_glyphWorkspace *p_gw = (T_glyphWorkspace *)aHandle;
     
-    switch (aAddress) {
-        case 0:
-            /* Assign ST7579 functions. */
-            p_gw->iLCDAPI->iOpen = ST7579_Open ;
-            p_gw->iLCDAPI->iWrite = ST7579_Write ;
-            p_gw->iLCDAPI->iRead = ST7579_Read ;
-            p_gw->iLCDAPI->iClose = ST7579_Close ;
-            break ;
-        default:
-            return GLYPH_ERROR_ILLEGAL_OPERATION ;
+    if(aAddress == 0){
+        /* Assign ST7579 functions. */
+        p_gw->iLCDAPI->iOpen = &ST7579_Open ;
+        p_gw->iLCDAPI->iWrite = &ST7579_Write ;
+        p_gw->iLCDAPI->iRead = &ST7579_Read ;
+        p_gw->iLCDAPI->iClose = &ST7579_Close ;
+        return GLYPH_ERROR_NONE ;
+    }else{
+        return GLYPH_ERROR_ILLEGAL_OPERATION ;
     }
-
-    return GLYPH_ERROR_NONE ;
 }
 

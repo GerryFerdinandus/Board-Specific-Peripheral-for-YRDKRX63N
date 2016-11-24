@@ -35,42 +35,12 @@
 ******************************************************************************/
 
 /******************************************************************************
-Includes “Glyph config Include”
+Includes "Glyph config Include"
 ******************************************************************************/
 #include "glyph_config.h"
 
-// const uint8_t FontHelvr10_char_0[] = {};
-// const uint8_t FontHelvr10_char_1[] = {};
-// const uint8_t FontHelvr10_char_2[] = {};
-// const uint8_t FontHelvr10_char_3[] = {};
-// const uint8_t FontHelvr10_char_4[] = {};
-// const uint8_t FontHelvr10_char_5[] = {};
-// const uint8_t FontHelvr10_char_6[] = {};
-// const uint8_t FontHelvr10_char_7[] = {};
-// const uint8_t FontHelvr10_char_8[] = {};
-// const uint8_t FontHelvr10_char_9[] = {};
-// const uint8_t FontHelvr10_char_10[] = {};
-// const uint8_t FontHelvr10_char_11[] = {};
-// const uint8_t FontHelvr10_char_12[] = {};
-// const uint8_t FontHelvr10_char_13[] = {};
-// const uint8_t FontHelvr10_char_14[] = {};
-// const uint8_t FontHelvr10_char_15[] = {};
-// const uint8_t FontHelvr10_char_16[] = {};
-// const uint8_t FontHelvr10_char_17[] = {};
-// const uint8_t FontHelvr10_char_18[] = {};
-// const uint8_t FontHelvr10_char_19[] = {};
-// const uint8_t FontHelvr10_char_20[] = {};
-// const uint8_t FontHelvr10_char_21[] = {};
-// const uint8_t FontHelvr10_char_22[] = {};
-// const uint8_t FontHelvr10_char_23[] = {};
-// const uint8_t FontHelvr10_char_24[] = {};
-// const uint8_t FontHelvr10_char_25[] = {};
-// const uint8_t FontHelvr10_char_26[] = {};
-// const uint8_t FontHelvr10_char_27[] = {};
-// const uint8_t FontHelvr10_char_28[] = {};
-// const uint8_t FontHelvr10_char_29[] = {};
-// const uint8_t FontHelvr10_char_30[] = {};
-// const uint8_t FontHelvr10_char_31[] = {};
+/* char 0..31 are skip */
+
 const uint8_t FontHelvr10_char_32[] = {
     0x03, 0x0E, // width=3, height=14
     0x00, 0x00, 0x00, 
@@ -546,135 +516,8 @@ const uint8_t FontHelvr10_char_126[] = {
     0x00, 0x80, 0x80, 0x00, 0x00, 0x80, 0x00, 
     0x01, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 
 };
-// const uint8_t FontHelvr10_char_127[] = {};
-// const uint8_t FontHelvr10_char_128[] = {};
-// const uint8_t FontHelvr10_char_129[] = {};
-// const uint8_t FontHelvr10_char_130[] = {};
-// const uint8_t FontHelvr10_char_131[] = {};
-// const uint8_t FontHelvr10_char_132[] = {};
-// const uint8_t FontHelvr10_char_133[] = {};
-// const uint8_t FontHelvr10_char_134[] = {};
-// const uint8_t FontHelvr10_char_135[] = {};
-// const uint8_t FontHelvr10_char_136[] = {};
-// const uint8_t FontHelvr10_char_137[] = {};
-// const uint8_t FontHelvr10_char_138[] = {};
-// const uint8_t FontHelvr10_char_139[] = {};
-// const uint8_t FontHelvr10_char_140[] = {};
-// const uint8_t FontHelvr10_char_141[] = {};
-// const uint8_t FontHelvr10_char_142[] = {};
-// const uint8_t FontHelvr10_char_143[] = {};
-// const uint8_t FontHelvr10_char_144[] = {};
-// const uint8_t FontHelvr10_char_145[] = {};
-// const uint8_t FontHelvr10_char_146[] = {};
-// const uint8_t FontHelvr10_char_147[] = {};
-// const uint8_t FontHelvr10_char_148[] = {};
-// const uint8_t FontHelvr10_char_149[] = {};
-// const uint8_t FontHelvr10_char_150[] = {};
-// const uint8_t FontHelvr10_char_151[] = {};
-// const uint8_t FontHelvr10_char_152[] = {};
-// const uint8_t FontHelvr10_char_153[] = {};
-// const uint8_t FontHelvr10_char_154[] = {};
-// const uint8_t FontHelvr10_char_155[] = {};
-// const uint8_t FontHelvr10_char_156[] = {};
-// const uint8_t FontHelvr10_char_157[] = {};
-// const uint8_t FontHelvr10_char_158[] = {};
-// const uint8_t FontHelvr10_char_159[] = {};
-// const uint8_t FontHelvr10_char_160[] = {};
-// const uint8_t FontHelvr10_char_161[] = {};
-// const uint8_t FontHelvr10_char_162[] = {};
-// const uint8_t FontHelvr10_char_163[] = {};
-// const uint8_t FontHelvr10_char_164[] = {};
-// const uint8_t FontHelvr10_char_165[] = {};
-// const uint8_t FontHelvr10_char_166[] = {};
-// const uint8_t FontHelvr10_char_167[] = {};
-// const uint8_t FontHelvr10_char_168[] = {};
-// const uint8_t FontHelvr10_char_169[] = {};
-// const uint8_t FontHelvr10_char_170[] = {};
-// const uint8_t FontHelvr10_char_171[] = {};
-// const uint8_t FontHelvr10_char_172[] = {};
-// const uint8_t FontHelvr10_char_173[] = {};
-// const uint8_t FontHelvr10_char_174[] = {};
-// const uint8_t FontHelvr10_char_175[] = {};
-// const uint8_t FontHelvr10_char_176[] = {};
-// const uint8_t FontHelvr10_char_177[] = {};
-// const uint8_t FontHelvr10_char_178[] = {};
-// const uint8_t FontHelvr10_char_179[] = {};
-// const uint8_t FontHelvr10_char_180[] = {};
-// const uint8_t FontHelvr10_char_181[] = {};
-// const uint8_t FontHelvr10_char_182[] = {};
-// const uint8_t FontHelvr10_char_183[] = {};
-// const uint8_t FontHelvr10_char_184[] = {};
-// const uint8_t FontHelvr10_char_185[] = {};
-// const uint8_t FontHelvr10_char_186[] = {};
-// const uint8_t FontHelvr10_char_187[] = {};
-// const uint8_t FontHelvr10_char_188[] = {};
-// const uint8_t FontHelvr10_char_189[] = {};
-// const uint8_t FontHelvr10_char_190[] = {};
-// const uint8_t FontHelvr10_char_191[] = {};
-// const uint8_t FontHelvr10_char_192[] = {};
-// const uint8_t FontHelvr10_char_193[] = {};
-// const uint8_t FontHelvr10_char_194[] = {};
-// const uint8_t FontHelvr10_char_195[] = {};
-// const uint8_t FontHelvr10_char_196[] = {};
-// const uint8_t FontHelvr10_char_197[] = {};
-// const uint8_t FontHelvr10_char_198[] = {};
-// const uint8_t FontHelvr10_char_199[] = {};
-// const uint8_t FontHelvr10_char_200[] = {};
-// const uint8_t FontHelvr10_char_201[] = {};
-// const uint8_t FontHelvr10_char_202[] = {};
-// const uint8_t FontHelvr10_char_203[] = {};
-// const uint8_t FontHelvr10_char_204[] = {};
-// const uint8_t FontHelvr10_char_205[] = {};
-// const uint8_t FontHelvr10_char_206[] = {};
-// const uint8_t FontHelvr10_char_207[] = {};
-// const uint8_t FontHelvr10_char_208[] = {};
-// const uint8_t FontHelvr10_char_209[] = {};
-// const uint8_t FontHelvr10_char_210[] = {};
-// const uint8_t FontHelvr10_char_211[] = {};
-// const uint8_t FontHelvr10_char_212[] = {};
-// const uint8_t FontHelvr10_char_213[] = {};
-// const uint8_t FontHelvr10_char_214[] = {};
-// const uint8_t FontHelvr10_char_215[] = {};
-// const uint8_t FontHelvr10_char_216[] = {};
-// const uint8_t FontHelvr10_char_217[] = {};
-// const uint8_t FontHelvr10_char_218[] = {};
-// const uint8_t FontHelvr10_char_219[] = {};
-// const uint8_t FontHelvr10_char_220[] = {};
-// const uint8_t FontHelvr10_char_221[] = {};
-// const uint8_t FontHelvr10_char_222[] = {};
-// const uint8_t FontHelvr10_char_223[] = {};
-// const uint8_t FontHelvr10_char_224[] = {};
-// const uint8_t FontHelvr10_char_225[] = {};
-// const uint8_t FontHelvr10_char_226[] = {};
-// const uint8_t FontHelvr10_char_227[] = {};
-// const uint8_t FontHelvr10_char_228[] = {};
-// const uint8_t FontHelvr10_char_229[] = {};
-// const uint8_t FontHelvr10_char_230[] = {};
-// const uint8_t FontHelvr10_char_231[] = {};
-// const uint8_t FontHelvr10_char_232[] = {};
-// const uint8_t FontHelvr10_char_233[] = {};
-// const uint8_t FontHelvr10_char_234[] = {};
-// const uint8_t FontHelvr10_char_235[] = {};
-// const uint8_t FontHelvr10_char_236[] = {};
-// const uint8_t FontHelvr10_char_237[] = {};
-// const uint8_t FontHelvr10_char_238[] = {};
-// const uint8_t FontHelvr10_char_239[] = {};
-// const uint8_t FontHelvr10_char_240[] = {};
-// const uint8_t FontHelvr10_char_241[] = {};
-// const uint8_t FontHelvr10_char_242[] = {};
-// const uint8_t FontHelvr10_char_243[] = {};
-// const uint8_t FontHelvr10_char_244[] = {};
-// const uint8_t FontHelvr10_char_245[] = {};
-// const uint8_t FontHelvr10_char_246[] = {};
-// const uint8_t FontHelvr10_char_247[] = {};
-// const uint8_t FontHelvr10_char_248[] = {};
-// const uint8_t FontHelvr10_char_249[] = {};
-// const uint8_t FontHelvr10_char_250[] = {};
-// const uint8_t FontHelvr10_char_251[] = {};
-// const uint8_t FontHelvr10_char_252[] = {};
-// const uint8_t FontHelvr10_char_253[] = {};
-// const uint8_t FontHelvr10_char_254[] = {};
-// const uint8_t FontHelvr10_char_255[] = {};
+
+/* char 127..255 are skip */
 
 const uint8_t * FontHelvr10_table[256] = {
     0,

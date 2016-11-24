@@ -41,7 +41,7 @@
 ******************************************************************************/
 
 /******************************************************************************
-Includes �Glyph Includes�
+Includes Glyph Includes
 ******************************************************************************/
 //#include "Config.h"
 #include "glyph.h"
@@ -49,8 +49,7 @@ Includes �Glyph Includes�
 /******************************************************************************
 Private Prototypes for the Glyph LCD API
 ******************************************************************************/
-//T_glyphError GlyphLCDOpen(T_glyphHandle *aHandle, uint32_t aAddress) ;
-//T_glyphError GlyphCommOpen(T_glyphHandle *aHandle, uint32_t aAddress) ;
+
 
 /******************************************************************************
 * ID : 1.0
@@ -68,7 +67,6 @@ Private Prototypes for the Glyph LCD API
 T_glyphError GlyphOpen(T_glyphHandle *aHandle, uint32_t aAddress)
 {
     T_glyphError error = GLYPH_ERROR_ILLEGAL_OPERATION ;
-    //T_glyphWorkspace *p_glyph = (T_glyphWorkspace *)aHandle;
     T_glyphWorkspace *p_glyph ;
 
     p_glyph = (T_glyphWorkspace *)malloc(sizeof(T_glyphWorkspace)) ;
@@ -78,10 +76,9 @@ T_glyphError GlyphOpen(T_glyphHandle *aHandle, uint32_t aAddress)
     *aHandle = (T_glyphHandle)p_glyph ;
     
     /* Open the communications and the LCD */
-    if (GlyphCommOpen(*aHandle, aAddress) == GLYPH_ERROR_NONE) {
-        if (GlyphLCDOpen(*aHandle, aAddress) == GLYPH_ERROR_NONE) {
+    if( (GlyphCommOpen(*aHandle, aAddress) == GLYPH_ERROR_NONE)
+        && (GlyphLCDOpen(*aHandle, aAddress) == GLYPH_ERROR_NONE) ){
             error = p_glyph->iLCDAPI->iOpen(*aHandle, aAddress) ;
-        }
     }
     
     return error ;
@@ -427,10 +424,10 @@ T_glyphError GlyphGetVersionInfo(T_glyphHandle aHandle, T_glyphVersionInfo *aInf
                     aInfo->nVersionIMPLMajor = nVersionValue ;
                     if (p_glyph->iLCDAPI->iRead(aHandle, GLYPH_IMPL_MINOR_VERSION, &nVersionValue) == GLYPH_ERROR_NONE) {
                         aInfo->nVersionIMPLMinor = nVersionValue ;
-                        sprintf((char *)aInfo->strVersionAPI, "API version %d.0%d",
+                        snprintf((char *)aInfo->strVersionAPI, sizeof(aInfo->strVersionAPI), "API version %d.0%d",
                                 (int)aInfo->nVersionAPIMajor,
 								(int)aInfo->nVersionAPIMinor) ;
-                        sprintf((char *)aInfo->strVersionIMPL, "Implementation version %d.%d%d",
+                        snprintf((char *)aInfo->strVersionIMPL, sizeof(aInfo->strVersionIMPL), "Implementation version %d.%d%d",
                         		(int)aInfo->nVersionIMPLMajor,
 								(int)aInfo->nImplementationID,
 								(int)aInfo->nVersionIMPLMinor) ;

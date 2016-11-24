@@ -63,6 +63,7 @@ Private global variables and functions
 ***********************************************************************************************************************/
 void glyph_send_byte(uint8_t data);
 
+
 /***********************************************************************************************************************
 * Function Name: R_GLYPH_Open
 * Description  : Open and setup communications to the LCD.
@@ -75,37 +76,37 @@ void glyph_send_byte(uint8_t data);
 ***********************************************************************************************************************/
 T_glyphError R_GLYPH_Open(T_glyphHandle aHandle)
 {
-    /* Loop counter. */
-    volatile uint32_t i;
     /* Number of cycles needed for delay. */
     uint32_t delay_cycles;
 
     /* Reset the LCD. There is an inverter on the board so setting the pin high gives a low signal to the LCD. */
     LCD_RESET = 1;
 
-    /* These delays are done through for() loops since this function should only need to run once after reset and the
+    /* These delays are done through 'for loops' since this function should only need to run once after reset and the
        times are not usually too long (e.g. 1.5us). If you are using an RTOS and wanted to do some useful work you
        could yield the current task instead of waiting. */
 
-    /* This calculation figures out how many CPU cycles are needed for the delay. One time through the for() loop
+    /* This calculation figures out how many CPU cycles are needed for the delay. One time through the 'for loop'
        will likely take more than 1 cycle so this time is somewhat exagerated. */
     delay_cycles = (uint32_t)( GLYPH_RESET_LOW_TIME_NS / (ICLK_HZ / 1e7));
 
-    for (i = 0; i < delay_cycles; i++)
+    for (uint32_t i = 0; i < delay_cycles; i++)
     {
         /* Hold the reset for the time specified in the LCD's datasheet. */
+    	__asm volatile( "nop");
     }
 
     /* There is also a delay needed after the reset. */
     LCD_RESET = 0;
 
-    /* This calculation figures out how many CPU cycles are needed for the delay. One time through the for() loop
+    /* This calculation figures out how many CPU cycles are needed for the delay. One time through the 'for loop'
        will likely take more than 1 cycle so this time is somewhat exagerated. */
     delay_cycles = (uint32_t)(GLYPH_RESET_HIGH_TIME_NS / (ICLK_HZ / 1e7));
 
-    for (i = 0; i < delay_cycles; i++)
+    for (uint32_t i = 0; i < delay_cycles; i++)
     {
         /* Hold the reset for the time specified in the LCD's datasheet. */
+    	__asm volatile( "nop");
     }
 
     /* Initialize RSPI channel. */

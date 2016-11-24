@@ -101,12 +101,11 @@ void lcd_clear(void)
 void lcd_display(uint8_t position, const char * string)
 {
     uint8_t y = (uint8_t)(position - (position % 8));
-    uint8_t xOffset = (uint8_t)((position % 8)<<3);
+    uint8_t xOffset = (uint8_t)((position % 8) << 3U);
 
     /* Draw text lines, 8 pixels high, 96 pixels wide */
     /* Clear the rectangle of this line */
     GlyphEraseBlock(lcd_handle, xOffset, y, (uint32_t)(95 - xOffset), (uint32_t)(y+7) );
     GlyphSetXY(lcd_handle, xOffset, y);
-//    GlyphString(lcd_handle, (uint8_t *)string, strlen((void *)string));
     GlyphString(lcd_handle, (const uint8_t *)string, strlen(string));
 }
