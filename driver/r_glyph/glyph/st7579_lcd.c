@@ -279,7 +279,7 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                 ST7579_SetChar(aHandle, (uint8_t)p_gw->iLCDAPI->iCharX_Position);
                 for (column=0; column<width; column++, p_charData++)    {
 					// Output the inverted values to invert character
-                    p_gw->iCommAPI->iDataSend(*p_charData ^ 0xFF);
+                    p_gw->iCommAPI->iDataSend(*p_charData ^ 0xFFU);
                 }
             }
 			p_gw->iLCDAPI->iCharX_Position += width;
@@ -455,11 +455,6 @@ void ST7579_SetSystemBiasBooster(T_glyphHandle aHandle, uint8_t cValue0To17)
                 cBias = 0x15 ;
                 cBoost = 0x99 ;
                 break ;
-            case 9:
-                /* Bias level 1/7 Boost Times 3. */
-                cBias = 0x14 ;
-                cBoost = 0x99 ;
-                break ;
             case 1:
                 /* Bias level 1/4 Boost Times 4. */
                 cBias = 0x17 ;
@@ -531,7 +526,7 @@ void ST7579_SetSystemBiasBooster(T_glyphHandle aHandle, uint8_t cValue0To17)
                 cBoost = 0x9B ;
                 break ;
             default:
-                /* Bias level 7 Boost Times 3. */
+                /* Bias level 1/7 Boost Times 3. */
                 cBias = 0x14 ;
                 cBoost = 0x99 ;
                 break ;
@@ -572,11 +567,11 @@ void ST7579_SetVO_Range(T_glyphHandle aHandle, uint8_t nValue0to254)
     	uint8_t cLowHigh = 0 ;
 
         if (nValue0to254 > 127) {
-            cByteToSend = (uint8_t)((nValue0to254 - 127) | 0x80) & 0x00FF ;
+            cByteToSend = (uint8_t)(nValue0to254 - 127) | 0x80;
             cLowHigh = 1 ;
         }
         else {
-            cByteToSend = (nValue0to254 | 0x80) & 0x00FF ;
+            cByteToSend = (uint8_t)(nValue0to254 | 0x80);
         }
 
         /* Use Function Set 0 H[1:0]=(0,0) */
@@ -756,7 +751,7 @@ void ST7579_SetPage(T_glyphHandle aHandle, uint8_t cValue0To9)
     uint8_t cValueToSend = cValue0To9 | 0x40 ;
 
     if (cValue0To9 <= 9) {
-        cValueToSend &= 0x4F ;
+        cValueToSend &= 0x4FU ;
     
         /* Use Function Set 0 H[1:0]=(0,0) */
         /* Original Development hardcoded this as CommandSend(0x020) */
@@ -784,7 +779,7 @@ void ST7579_SetChar(T_glyphHandle aHandle, uint8_t cValue0To101)
     uint8_t cValueToSend = cValue0To101 | 0x80 ;
     
     if (cValue0To101 <= 101) {
-        cValueToSend &= 0xFF ;
+        cValueToSend &= 0xFFU ;
     
         /* Use Function Set 0 H[1:0]=(0,0) */
         /* Original Development hardcoded this as CommandSend(0x020) */

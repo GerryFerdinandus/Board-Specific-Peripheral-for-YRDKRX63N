@@ -38,9 +38,6 @@ Includes   <System Includes> , "Project Includes"
 #include <stdint.h>
 /* Boolean defines */
 #include <stdbool.h>
-/* Used for xchg() intrinsic */
-//#include <machine.h>
-
 /* Access to peripherals and board defines. */
 #include "platform.h"
 /* Defines for RSPI support */
@@ -618,7 +615,7 @@ bool R_RSPI_SendReceive(uint8_t channel,
                         uint32_t pid)
 {    	
     uint16_t byte_count;  
-    volatile uint32_t temp;
+    uint32_t temp;
 
 #if defined(RSPI_REQUIRE_LOCK)    
     /* Verify that this task has the lock */
@@ -656,7 +653,7 @@ bool R_RSPI_SendReceive(uint8_t channel,
         /* Read received data.  If transmit only, then ignore it */
         if (pDest == NULL)
         {
-            temp = (*g_rspi_channels[channel]).SPDR.LONG;
+            *(volatile uint32_t *)(&temp) = (*g_rspi_channels[channel]).SPDR.LONG;
         }
         else
         {
@@ -703,8 +700,6 @@ bool R_RSPI_SendReceive(uint8_t channel,
 *                false -
 *                    This task did lock the RSPI fist.
 ***********************************************************************************************************************/
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-variable"
 
 bool R_RSPI_Read(uint8_t channel, 
                  uint8_t *pDest, 
@@ -712,7 +707,6 @@ bool R_RSPI_Read(uint8_t channel,
                  uint32_t pid)
 {
     uint16_t byte_count;
-    volatile uint32_t temp;
 
 #if defined(RSPI_REQUIRE_LOCK)    
     /* Verify that this task has the lock */
@@ -770,7 +764,6 @@ bool R_RSPI_Read(uint8_t channel,
     return true;
 }
 
-#pragma GCC diagnostic pop
 
 /***********************************************************************************************************************
 * Function Name: R_RSPI_Write
@@ -789,8 +782,6 @@ bool R_RSPI_Read(uint8_t channel,
 *                false -
 *                    This task did lock the RSPI fist.
 ***********************************************************************************************************************/
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 
 bool R_RSPI_Write(uint8_t channel, 
                   const uint8_t *pSrc, 
@@ -798,7 +789,8 @@ bool R_RSPI_Write(uint8_t channel,
                   uint32_t pid)
 {
     uint16_t byte_count;  
-    volatile uint32_t temp;
+    uint32_t temp;
+
 
 #if defined(RSPI_REQUIRE_LOCK)    
     /* Verify that this task has the lock */
@@ -834,7 +826,8 @@ bool R_RSPI_Write(uint8_t channel,
 #endif
         
         /* Read received data.  If transmit only, then ignore it */
-        temp = (*g_rspi_channels[channel]).SPDR.LONG;
+        *(volatile uint32_t *)(&temp) = (*g_rspi_channels[channel]).SPDR.LONG;
+
 
         /* Clear pending interrupts */
         if (0 == channel)
@@ -856,7 +849,6 @@ bool R_RSPI_Write(uint8_t channel,
     return true;
 }
 
-#pragma GCC diagnostic pop
 
 /* These functions are only needed if locking is enabled in 
    r_rspi_rx600_config.h */
@@ -883,8 +875,8 @@ bool R_RSPI_Lock(uint8_t channel, uint32_t pid)
     
 
     /* Try to grab semaphore to change state */
-    //xchg(&semaphore, &rspi_semaphore);
-    //TODO: use GCC inline asm for swap
+    //xchg(&semaphore, &rspi_semaphore); (Renesas compiler)
+    //use GCC inline asm for swap
     __builtin_rx_xchg((int *)&semaphore, (int *)&rspi_semaphore);
 
     

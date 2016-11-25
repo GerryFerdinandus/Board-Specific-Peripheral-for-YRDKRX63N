@@ -5,8 +5,8 @@
  *     Configuration file for The Generic API for Graphics LCD
  *     Glyph
  *-------------------------------------------------------------------------*/
-#ifndef __GLYPH__CONFIG_H
-#define __GLYPH__CONFIG_H
+#ifndef GLYPH__CONFIG_H
+#define GLYPH__CONFIG_H
 
 #include "preamble.h"
 
@@ -41,7 +41,7 @@
 //#define USE_DEFAULT_FONT Fontx6x13_table
 //#define USE_DEFAULT_FONT FontHelvr10_table
 
-#endif // __GLYPH__CONFIG_H
+#endif // GLYPH__CONFIG_H
 /*-------------------------------------------------------------------------*
  * End of File:  Config.H
  *-------------------------------------------------------------------------*/

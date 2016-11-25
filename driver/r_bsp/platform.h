@@ -30,8 +30,8 @@
 *                               where HEW shows all header files for all platforms under 'Dependencies'.
 ***********************************************************************************************************************/
 
-#ifndef _PLATFORM_H_
-#define _PLATFORM_H_
+#ifndef PLATFORM_H_
+#define PLATFORM_H_
 
 /***********************************************************************************************************************
 DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
@@ -67,5 +67,5 @@ MAKE SURE AT LEAST ONE PLATFORM WAS DEFINED - DO NOT EDIT BELOW THIS POINT
 #error  "Error - No platform defined in platform.h!"
 #endif
 
-#endif /* _PLATFORM_H_ */
+#endif /* PLATFORM_H_ */
 

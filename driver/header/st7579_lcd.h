@@ -9,11 +9,11 @@
  * Communications Required: 3-Wire SPI with a 4th Wire independent
  *                          Transmit Only
  *-------------------------------------------------------------------------*/
-#ifndef __GLYPH__ST7579_LCD_HEADER_FILE
-#define __GLYPH__ST7579_LCD_HEADER_FILE
+#ifndef GLYPH__ST7579_LCD_HEADER_FILE
+#define GLYPH__ST7579_LCD_HEADER_FILE
 
 /******************************************************************************
-Includes �Glyph Include�
+Includes "Glyph Include"
 ******************************************************************************/
 #include "glyph.h"
 
@@ -76,5 +76,5 @@ void ST7579_SetLine(T_glyphHandle aHandle, uint8_t cValue0To66) ;
 void ST7579_Send8bitsData(T_glyphHandle aHandle, uint8_t cData) ;
 void ST7579_Send16bitsCommand(T_glyphHandle aHandle, uint32_t nCommand) ;//uint16_t
 
-#endif /* __GLYPH__ST7579_LCD_HEADER_FILE */
+#endif /* GLYPH__ST7579_LCD_HEADER_FILE */
 

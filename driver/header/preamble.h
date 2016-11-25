@@ -5,8 +5,8 @@
  *     Basic definitions or all simple types and constants.
  *     Used for compatibility between compilers and hardware.
  *-------------------------------------------------------------------------*/
-#ifndef __GLYPH__PREAMBLE_H
-#define __GLYPH__PREAMBLE_H
+#ifndef GLYPH__PREAMBLE_H
+#define GLYPH__PREAMBLE_H
 
 /***************************************************************************
  * SECTION:  CONSTANTS
@@ -53,7 +53,7 @@ typedef unsigned long long uint64_t ;
 #define b6      0x40
 #define b7      0x80
 
-#endif  /* __GLYPH__PREAMBLE_H */
+#endif  /* GLYPH__PREAMBLE_H */
 /*-------------------------------------------------------------------------*
  * End of File:  Preamble.H
  *-------------------------------------------------------------------------*/

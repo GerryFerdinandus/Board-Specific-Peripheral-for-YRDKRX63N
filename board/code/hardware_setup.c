@@ -177,6 +177,7 @@ static void operating_frequency_set(void)
 {
     /* Used for constructing value to write to SCKCR register. */
     uint32_t temp_clock = 0;
+    uint32_t temp;
 
     /*
     Clock Description              Frequency
@@ -217,7 +218,7 @@ static void operating_frequency_set(void)
 	for(uint16_t i = 0;i< 0x168;i++)
     {
         /* Wait over 12ms */
-		__asm volatile( "nop");
+		*(volatile uint32_t *)(&temp) = 0;
 	}
 
     /* Figure out setting for FCK bits. */

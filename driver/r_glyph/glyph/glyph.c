@@ -552,19 +552,20 @@ T_glyphError GlyphDrawTestPattern(T_glyphHandle aHandle)
 ******************************************************************************/
 T_glyphError GlyphDrawBlock(T_glyphHandle aHandle, uint32_t aX1, uint32_t aY1, uint32_t aX2, uint32_t aY2)
 {
-    T_glyphWorkspace *p_glyph = (T_glyphWorkspace *)aHandle;
+	T_glyphWorkspace *p_glyph = (T_glyphWorkspace *) aHandle;
 
-    if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X, aX1) == GLYPH_ERROR_NONE) {
-        if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y, aY1) == GLYPH_ERROR_NONE) {
-            if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X2, aX2) == GLYPH_ERROR_NONE) {
-                if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y2, aY2) == GLYPH_ERROR_NONE) {
-                    return GlyphSetDrawMode(aHandle, GLYPH_CMD_DRAW_BLOCK) ;
-                }
-            }
-        }
+    if(
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X, aX1) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y, aY1) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X2, aX2) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y2, aY2) == GLYPH_ERROR_NONE) )
+    {
+		return GlyphSetDrawMode(aHandle, GLYPH_CMD_DRAW_BLOCK) ;
     }
-
-    return GLYPH_ERROR_ILLEGAL_OPERATION ;
+    else
+    {
+        return GLYPH_ERROR_ILLEGAL_OPERATION ;
+    }
 }
 
 /******************************************************************************
@@ -586,17 +587,19 @@ T_glyphError GlyphEraseBlock(T_glyphHandle aHandle, uint32_t aX1, uint32_t aY1, 
 {
     T_glyphWorkspace *p_glyph = (T_glyphWorkspace *)aHandle;
 
-    if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X, aX1) == GLYPH_ERROR_NONE) {
-        if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y, aY1) == GLYPH_ERROR_NONE) {
-            if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X2, aX2) == GLYPH_ERROR_NONE) {
-                if (p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y2, aY2) == GLYPH_ERROR_NONE) {
-                    return GlyphSetDrawMode(aHandle, GLYPH_CMD_ERASE_BLOCK) ;
-                }
-            }
-        }
+    if(
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X, aX1) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y, aY1) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_X2, aX2) == GLYPH_ERROR_NONE) &&
+		(p_glyph->iLCDAPI->iWrite(aHandle, GLYPH_CHAR_Y2, aY2) == GLYPH_ERROR_NONE) )
+    {
+		return GlyphSetDrawMode(aHandle, GLYPH_CMD_ERASE_BLOCK) ;
+    }
+    else
+    {
+        return GLYPH_ERROR_ILLEGAL_OPERATION ;
     }
 
-    return GLYPH_ERROR_ILLEGAL_OPERATION ;
 }
 
 /******************************************************************************

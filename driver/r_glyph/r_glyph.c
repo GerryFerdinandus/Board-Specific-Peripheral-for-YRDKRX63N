@@ -78,6 +78,7 @@ T_glyphError R_GLYPH_Open(T_glyphHandle aHandle)
 {
     /* Number of cycles needed for delay. */
     uint32_t delay_cycles;
+    uint32_t temp;
 
     /* Reset the LCD. There is an inverter on the board so setting the pin high gives a low signal to the LCD. */
     LCD_RESET = 1;
@@ -93,7 +94,7 @@ T_glyphError R_GLYPH_Open(T_glyphHandle aHandle)
     for (uint32_t i = 0; i < delay_cycles; i++)
     {
         /* Hold the reset for the time specified in the LCD's datasheet. */
-    	__asm volatile( "nop");
+        *(volatile uint32_t *)(&temp) = 0;
     }
 
     /* There is also a delay needed after the reset. */
@@ -106,7 +107,7 @@ T_glyphError R_GLYPH_Open(T_glyphHandle aHandle)
     for (uint32_t i = 0; i < delay_cycles; i++)
     {
         /* Hold the reset for the time specified in the LCD's datasheet. */
-    	__asm volatile( "nop");
+        *(volatile uint32_t *)(&temp) = 0;
     }
 
     /* Initialize RSPI channel. */

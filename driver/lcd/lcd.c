@@ -100,8 +100,8 @@ void lcd_clear(void)
 ***********************************************************************************************************************/
 void lcd_display(uint8_t position, const char * string)
 {
-    uint8_t y = (uint8_t)(position - (position % 8));
-    uint8_t xOffset = (uint8_t)((position % 8) << 3U);
+    uint8_t y = (uint8_t)(position - (position % 8U));
+    uint8_t xOffset = (uint8_t)((position % 8U) << 3U);
 
     /* Draw text lines, 8 pixels high, 96 pixels wide */
     /* Clear the rectangle of this line */
