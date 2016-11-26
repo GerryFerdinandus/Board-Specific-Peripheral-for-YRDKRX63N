@@ -2,9 +2,7 @@
 # Exit on failure
 set -e
 
-# This assumes that the following variables are defined:
-# - SONAR_TOKEN    => token of a user who has the "Execute Analysis" permission on the SQ server
-
+# Remember to update the sonar-scanner server version as the same workstation version.
 installSonarQubeScanner() {
 	export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-2.8
 	rm -rf $SONAR_SCANNER_HOME
@@ -28,7 +26,6 @@ build() {
 
 echo "SonarQube..."
 
-
 # run the analysis
 # It assumes that there's a sonar-project.properties file at the root of the repo
 if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
@@ -43,15 +40,15 @@ if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 	#upload the data to SonarQube
 	sonar-scanner \
 		-Dsonar.login=$SONAR_TOKEN \
-		-Dsonar.projectKey=GerryFerdinandus:Renesas-RX-Board-Support-Package-for-YRDKRX63N \
-		-Dsonar.projectName=Renesas-RX-Board-Support-Package-for-YRDKRX63N \
-		-Dsonar.sources=board,driver,test \
+		-Dsonar.projectKey=$SONAR_PROJECT_KEY \
+		-Dsonar.projectName=$SONAR_PROJECT_NAME \
+		-Dsonar.sources=$SONAR_SOURCES \
+		-Dsonar.language=$SONAR_LANGUAGE \
+		-Dsonar.exclusions=$SONAR_EXCLUSIONS \
+		-Dsonar.sourceEncoding=$SONAR_SOURCE_ENCODING \
+		-Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
 		-Dsonar.cfamily.build-wrapper-output=bw-outputs \
 		-Dsonar.host.url=https://sonarqube.com \
-		-Dsonar.language=c \
-		-Dsonar.projectVersion=1.0 \
-		-Dsonar.exclusions=board/header/iodefine.h \
-		
 
 elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN-}" ]; then
 	# => This will analyse the PR and display found issues as comments in the PR, but it won't push results to the SonarQube server

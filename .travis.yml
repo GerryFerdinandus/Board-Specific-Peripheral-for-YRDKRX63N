@@ -26,10 +26,11 @@ env:
   # SONAR_TOKEN must be define in travis-ci 'Environment Variables'
   - SONAR_PROJECT_KEY="GerryFerdinandus:Renesas-RX-Board-Support-Package-for-YRDKRX63N"
   - SONAR_PROJECT_NAME="Renesas-RX-Board-Support-Package-for-YRDKRX63N"
-  - SONAR_SOURCE="board,driver,test"
+  - SONAR_SOURCES="board,driver,test"
   - SONAR_EXCLUSIONS="board/header/iodefine.h"
   - SONAR_SOURCE_ENCODING="UTF-8"
   - SONAR_LANGUAGE="c"
+  - SONAR_PROJECT_VERSION="1.0"
 
 
 before_script:
