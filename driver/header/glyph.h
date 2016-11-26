@@ -9,7 +9,7 @@
 #define GLYPH_LIB_GLYPH_HEADER_FILE
 
 /******************************************************************************
-Includes �Glyph config Include�
+Includes "Glyph config Include"
 ******************************************************************************/
 #include "glyph_config.h"
 
