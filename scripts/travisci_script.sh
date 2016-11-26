@@ -22,5 +22,5 @@ make clean
 ./scripts/travisci_build_coverity_scan.sh
 
 # Start SonarQube Analysis
-#./scripts/runSonarQubeAnalysis.sh
+./scripts/runSonarQubeAnalysis.sh
 

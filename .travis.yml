@@ -21,8 +21,16 @@ env:
   - COVERITY_SCAN_NOTIFICATION_EMAIL="$EMAIL_PRIVATE"
   - COVERITY_SCAN_BUILD_COMMAND="make"
   - COVERITY_SCAN_PROJECT_NAME="$TRAVIS_REPO_SLUG"
+
   #---- SonarQube
   # SONAR_TOKEN must be define in travis-ci 'Environment Variables'
+  - SONAR_PROJECT_KEY="GerryFerdinandus:Renesas-RX-Board-Support-Package-for-YRDKRX63N"
+  - SONAR_PROJECT_NAME="Renesas-RX-Board-Support-Package-for-YRDKRX63N"
+  - SONAR_SOURCE="board,driver,test"
+  - SONAR_EXCLUSIONS="board/header/iodefine.h"
+  - SONAR_SOURCE_ENCODING="UTF-8"
+  - SONAR_LANGUAGE="c"
+
 
 before_script:
   - jdk_switcher use oraclejdk8
@@ -35,16 +43,10 @@ script:
 git:
   depth: 1
 
-cache:
-  ccache: true
-  directories:
-    - $HOME/.sonar/cache
-
 # Need to install Java for SonarQube
 addons:
   apt:
     packages:
     - oracle-java8-installer
-  sonarqube: true
 
 # There is a Travis WebLint issue with the addons. Just ignore it.
