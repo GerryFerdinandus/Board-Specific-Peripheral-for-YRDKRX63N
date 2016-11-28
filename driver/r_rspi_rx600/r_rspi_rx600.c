@@ -588,7 +588,7 @@ bool R_RSPI_BaudRateSet(uint8_t channel, uint8_t divisor, uint32_t pid)
 
     /* Set RSPI bit rate (SPBR) */
     /* -Set baud rate to (48MHz / (2 * (divisor + 1) * 2^0) ) */
-    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR = divisor; /* (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR.BYTE = divisor; */
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR = divisor;
 
     return true;
 }
@@ -637,7 +637,9 @@ bool R_RSPI_SendReceive(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF){
+            // Intentionally empty while loop
+        }
         
         /* If just reading then transmit 0xFF */
         (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = (pSrc == NULL) ? 0xFF : pSrc[byte_count];
@@ -645,16 +647,25 @@ bool R_RSPI_SendReceive(uint8_t channel,
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
         {
-            while (IR(RSPI0, SPRI0) == 0) ;
+            while (IR(RSPI0, SPRI0) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
         else if (1 == channel)
         {
-            while (IR(RSPI1, SPRI1) == 0) ;
+            while (IR(RSPI1, SPRI1) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #if RSPI_NUM_CHANNELS == 3
         else 
         {
-            while (IR(RSPI2, SPRI2) == 0) ;
+            while (IR(RSPI2, SPRI2) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #endif
         
@@ -728,7 +739,10 @@ bool R_RSPI_Read(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF)
+        {
+            // Intentionally empty while loop
+        }
         
         /* If just reading then transmit 0xFF */
         (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = 0xFFFFFFFF ;
@@ -736,16 +750,25 @@ bool R_RSPI_Read(uint8_t channel,
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
         {
-            while (IR(RSPI0, SPRI0) == 0) ;
+            while (IR(RSPI0, SPRI0) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
         else if (1 == channel)
         {
-            while (IR(RSPI1, SPRI1) == 0) ;
+            while (IR(RSPI1, SPRI1) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #if RSPI_NUM_CHANNELS == 3
         else 
         {
-            while (IR(RSPI2, SPRI2) == 0) ;
+            while (IR(RSPI2, SPRI2) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #endif
         
@@ -812,7 +835,10 @@ bool R_RSPI_Write(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF)
+        {
+            // Intentionally empty while loop
+        }
         
         /* If just reading then transmit 0xFF */
         (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = pSrc[byte_count];
@@ -820,16 +846,25 @@ bool R_RSPI_Write(uint8_t channel,
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
         {
-            while (IR(RSPI0, SPRI0) == 0) ;
+            while (IR(RSPI0, SPRI0) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
         else if (1 == channel)
         {
-            while (IR(RSPI1, SPRI1) == 0) ;
+            while (IR(RSPI1, SPRI1) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #if RSPI_NUM_CHANNELS == 3
         else 
         {
-            while (IR(RSPI2, SPRI2) == 0) ;
+            while (IR(RSPI2, SPRI2) == 0)
+            {
+                // Intentionally empty while loop
+            }
         }
 #endif
         
