@@ -103,19 +103,27 @@ static bool rspi_initialized[RSPI_NUM_CHANNELS] =
 /* Used to prevent having duplicate code for each channel. This only works if the channels are identical (just at 
    different locations in memory). This is easy to tell by looking in iodefine.h and seeing if the same structure
    was used for all channels. */
-//volatile struct st_rspi __evenaccess * g_rspi_channels[RSPI_NUM_CHANNELS] = */
 
-volatile struct st_rspi  * g_rspi_channels[RSPI_NUM_CHANNELS] =
+//Misra standard does not allow the use of volatile as
+//Can not use volatile in variable must use a macro G_RSPI_CHANNELS_VOLATILE(X)
+//Ignore warning that the array variable is not volatile
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+struct st_rspi * const g_rspi_channels[RSPI_NUM_CHANNELS] =
 {
 /* Initialize the array for up to 2 channels. Add more as needed. */
 #if   RSPI_NUM_CHANNELS == 1
-    &RSPI0,
+	(struct st_rspi *)&RSPI0,
 #elif RSPI_NUM_CHANNELS == 2
-    &RSPI0, &RSPI1
+	(struct st_rspi *)&RSPI0, (struct st_rspi *)&RSPI1
 #elif RSPI_NUM_CHANNELS == 3
-    &RSPI0, &RSPI1, &RSPI2
+   (struct st_rspi *)&RSPI0, (struct st_rspi *)&RSPI1, (struct st_rspi *)&RSPI2
 #endif
 };
+#pragma GCC diagnostic pop
+
+//Must use this macro to access the volatile memory space.
+#define G_RSPI_CHANNELS_VOLATILE(X)  ((volatile struct st_rspi *) g_rspi_channels[X] )
 
 /***********************************************************************************************************************
 * Function Name: R_RSPI_Init
@@ -399,32 +407,32 @@ bool R_RSPI_Init(uint8_t channel)
 #endif
     
     /* Set pin control register (SPPCR) */
-    (*g_rspi_channels[channel]).SPPCR.BYTE = 0x00;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPPCR.BYTE = 0x00;
 
     /* Set RSPI bit rate (SPBR) */
     /* -Set baud rate to 8Mbps (48MHz / (2 * (2 + 1) * 2^0) ) = 8Mbps */
-    (*g_rspi_channels[channel]).SPBR = 30;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR = 30;
 
     /* Set RSPI data control register (SPDCR) */
     /* -SPDR is accessed in longwords (32 bits) 
        -Transfer 1 frame at a time */
-    (*g_rspi_channels[channel]).SPDCR.BYTE = 0x20;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDCR.BYTE = 0x20;
 
     /* Can Set if needed */
 #if 0
     /* Set RSPI clock delay registers (SPCKD) */
-    (*g_rspi_channels[channel]).SPCKD.BYTE = 7;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPCKD.BYTE = 7;
 
     /* Set RSPI slave select negation delay register (SSLND) */
-    (*g_rspi_channels[channel]).SSLND.BYTE = 7;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SSLND.BYTE = 7;
 
     /* Set RSPI next-access dealy register (SPND) */
-    (*g_rspi_channels[channel]).SPND.BYTE = 7;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPND.BYTE = 7;
 #endif
 
     /* Set RSPI control register 2 (SPCR2) */
     /* -Disable Idle interrupt */
-    (*g_rspi_channels[channel]).SPCR2.BYTE = 0x00;
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPCR2.BYTE = 0x00;
 
     /* Set RSPI command register 0 (SPCMD0) */
     /* -MSB first
@@ -432,7 +440,7 @@ bool R_RSPI_Init(uint8_t channel)
        -SSL0 (handled manually)
        -Use bit rate % 1       
         */       
-    (*g_rspi_channels[channel]).SPCMD0.WORD = 0x0400;    
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPCMD0.WORD = 0x0400;
     
     /* Set RSPI control register (SPCR) */        
     /* -Clock synchronous operation (3-wire)
@@ -440,7 +448,7 @@ bool R_RSPI_Init(uint8_t channel)
        -Master mode
        -SPTI and SPRI enabled in RSPI (have to check ICU also)
        -Enable RSPI function */
-    (*g_rspi_channels[channel]).SPCR.BYTE = 0xE9;          
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPCR.BYTE = 0xE9;
 
     /* Peripheral Initialized */
     rspi_initialized[channel] = true;
@@ -580,7 +588,7 @@ bool R_RSPI_BaudRateSet(uint8_t channel, uint8_t divisor, uint32_t pid)
 
     /* Set RSPI bit rate (SPBR) */
     /* -Set baud rate to (48MHz / (2 * (divisor + 1) * 2^0) ) */
-    (*g_rspi_channels[channel]).SPBR = divisor; /* (*g_rspi_channels[channel]).SPBR.BYTE = divisor; */
+    (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR = divisor; /* (*G_RSPI_CHANNELS_VOLATILE(channel)).SPBR.BYTE = divisor; */
 
     return true;
 }
@@ -629,10 +637,10 @@ bool R_RSPI_SendReceive(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*g_rspi_channels[channel]).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
         
         /* If just reading then transmit 0xFF */
-        (*g_rspi_channels[channel]).SPDR.LONG = (pSrc == NULL) ? 0xFF : pSrc[byte_count];
+        (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = (pSrc == NULL) ? 0xFF : pSrc[byte_count];
         
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
@@ -653,11 +661,11 @@ bool R_RSPI_SendReceive(uint8_t channel,
         /* Read received data.  If transmit only, then ignore it */
         if (pDest == NULL)
         {
-            *(volatile uint32_t *)(&temp) = (*g_rspi_channels[channel]).SPDR.LONG;
+            *(volatile uint32_t *)(&temp) = (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG;
         }
         else
         {
-            pDest[byte_count] = (uint8_t) ((*g_rspi_channels[channel]).SPDR.LONG & 0xFF);
+            pDest[byte_count] = (uint8_t) ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG & 0xFF);
         }
         
         /* Clear pending read interrupts */
@@ -720,10 +728,10 @@ bool R_RSPI_Read(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*g_rspi_channels[channel]).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
         
         /* If just reading then transmit 0xFF */
-        (*g_rspi_channels[channel]).SPDR.LONG = 0xFFFFFFFF ;
+        (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = 0xFFFFFFFF ;
         
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
@@ -742,7 +750,7 @@ bool R_RSPI_Read(uint8_t channel,
 #endif
         
         /* Read received data.  If transmit only, then ignore it */
-        pDest[byte_count] = (uint8_t) ((*g_rspi_channels[channel]).SPDR.LONG & 0xFF);
+        pDest[byte_count] = (uint8_t) ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG & 0xFF);
         
         /* Clear any pending read interrupts */
         if (0 == channel)
@@ -804,10 +812,10 @@ bool R_RSPI_Write(uint8_t channel,
     for (byte_count = 0; byte_count < usBytes; byte_count++)
     {
         /* Ensure transmit register is empty */
-        while ((*g_rspi_channels[channel]).SPSR.BIT.IDLNF) ;
+        while ((*G_RSPI_CHANNELS_VOLATILE(channel)).SPSR.BIT.IDLNF) ;
         
         /* If just reading then transmit 0xFF */
-        (*g_rspi_channels[channel]).SPDR.LONG = pSrc[byte_count];
+        (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG = pSrc[byte_count];
         
         /* Transfer is complete when a byte has been shifted in (full duplex) */
         if (0 == channel)
@@ -826,7 +834,7 @@ bool R_RSPI_Write(uint8_t channel,
 #endif
         
         /* Read received data.  If transmit only, then ignore it */
-        *(volatile uint32_t *)(&temp) = (*g_rspi_channels[channel]).SPDR.LONG;
+        *(volatile uint32_t *)(&temp) = (*G_RSPI_CHANNELS_VOLATILE(channel)).SPDR.LONG;
 
 
         /* Clear pending interrupts */
