@@ -52,8 +52,10 @@ CFLAGS=\
 	-mlittle-endian-data \
 	-mcpu=rx600 \
 	-Wall \
+	-Wextra \
 	-Werror \
 	-std=c99 \
+	-g \
 	$(END)
 
 # assembler flags with gcc
