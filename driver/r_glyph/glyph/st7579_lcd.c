@@ -97,7 +97,7 @@ T_glyphError ST7579_Open(T_glyphHandle aHandle, uint32_t aAddress)
 * Return Value : 0=success, not 0= error
 * Calling Functions : GlyphOpen
 ******************************************************************************/
-T_glyphError ST7579_Close(T_glyphHandle aHandle)
+T_glyphError ST7579_Close(__attribute__ ((unused)) T_glyphHandle aHandle)
 {
     return GLYPH_ERROR_NONE ;
 }

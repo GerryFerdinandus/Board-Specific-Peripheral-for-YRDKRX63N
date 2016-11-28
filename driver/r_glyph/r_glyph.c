@@ -74,7 +74,7 @@ void glyph_send_byte(uint8_t data);
 *                GLYPH_ERROR_ILLEGAL_OPERATION - 
 *                    Error
 ***********************************************************************************************************************/
-T_glyphError R_GLYPH_Open(T_glyphHandle aHandle)
+T_glyphError R_GLYPH_Open(__attribute__ ((unused)) T_glyphHandle aHandle)
 {
     /* Number of cycles needed for delay. */
     uint32_t delay_cycles;
