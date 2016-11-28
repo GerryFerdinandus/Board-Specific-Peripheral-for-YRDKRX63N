@@ -125,7 +125,9 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
     uint8_t height;
     const uint8_t *p_charData;
     uint32_t page;
-    T_glyphError error = GLYPH_ERROR_ILLEGAL_OPERATION ;
+
+    //Will set to error is no valid command is found
+    T_glyphError error = GLYPH_ERROR_NONE ;
     T_glyphWorkspace *p_gw = (T_glyphWorkspace *)aHandle;
 
     p_gw->iLCDAPI->iStatusRegister = GLYPH_STATUS_BUSY ;
@@ -133,11 +135,9 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
     switch (aRegister) {
         case GLYPH_CHAR_X:
             p_gw->iLCDAPI->iCharX_Position = aValue ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_Y:
             p_gw->iLCDAPI->iCharY_Position = aValue ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_FONT:
             p_gw->iLCDAPI->iCharFont = aValue;
@@ -177,8 +177,10 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                     p_gw->iLCDAPI->iFont = Fontx6x13_table ;
                     break ;
             #endif
+                default:
+                    // No valid command found.
+                    error = GLYPH_ERROR_ILLEGAL_OPERATION;
             }
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_DRAW_CMD:
             switch (aValue)  {
@@ -237,8 +239,10 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                         }
                     }
                     break;
+                default:
+                    // No valid command found.
+                    error = GLYPH_ERROR_ILLEGAL_OPERATION;
             }
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_DRAW_CHAR:
             p_char = p_gw->iLCDAPI->iFont[aValue];
@@ -253,7 +257,6 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                 }
             }
 			p_gw->iLCDAPI->iCharX_Position += width;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_ERASE:
             p_char = p_gw->iLCDAPI->iFont[aValue];
@@ -267,7 +270,6 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                 }
             }
 			p_gw->iLCDAPI->iCharX_Position += width;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_INVERT_CHAR:
             p_char = p_gw->iLCDAPI->iFont[aValue];
@@ -283,31 +285,28 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
                 }
             }
 			p_gw->iLCDAPI->iCharX_Position += width;
-            error = GLYPH_ERROR_NONE;
             break;
         case GLYPH_CHAR_X2:
             p_gw->iLCDAPI->iCharX2_Position = aValue ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_Y2:
             p_gw->iLCDAPI->iCharY2_Position = aValue ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_FRAME_RATE:
             p_gw->iLCDAPI->iFrameRate = aValue ;
             ST7579_SetFrameRate(aHandle, (uint8_t)p_gw->iLCDAPI->iFrameRate) ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CONTRAST:
             p_gw->iLCDAPI->iContrast = aValue ;
             ST7579_SetVO_Range(aHandle, (uint8_t)p_gw->iLCDAPI->iContrast) ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CONTRAST_BOOST:
             p_gw->iLCDAPI->iContrastBoost = (uint8_t)aValue ;
             ST7579_SetSystemBiasBooster(aHandle, p_gw->iLCDAPI->iContrastBoost) ;
-            error = GLYPH_ERROR_NONE ;
             break ;
+        default:
+            // No valid command found.
+            error = GLYPH_ERROR_ILLEGAL_OPERATION;
     }
 
     p_gw->iLCDAPI->iStatusRegister = GLYPH_STATUS_READY ;
@@ -329,7 +328,9 @@ T_glyphError ST7579_Write(T_glyphHandle aHandle, uint32_t aRegister, uint32_t aV
 ******************************************************************************/
 T_glyphError ST7579_Read(T_glyphHandle aHandle, uint32_t aRegister, uint32_t *aValue)
 {
-    T_glyphError error = GLYPH_ERROR_ILLEGAL_OPERATION ;
+	//Will set to error is no valid command is found
+    T_glyphError error = GLYPH_ERROR_NONE ;
+
     T_glyphWorkspace *p_gw = (T_glyphWorkspace *)aHandle;
 
     p_gw->iLCDAPI->iStatusRegister = GLYPH_STATUS_BUSY ;
@@ -341,60 +342,50 @@ T_glyphError ST7579_Read(T_glyphHandle aHandle, uint32_t aRegister, uint32_t *aV
             {
                 *aValue = GLYPH_STATUS_READY ;
             }
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_X:
             *aValue = p_gw->iLCDAPI->iCharX_Position ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_Y:
             *aValue = p_gw->iLCDAPI->iCharY_Position ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_FONT:
             *aValue = p_gw->iLCDAPI->iCharFont ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_API_MAJOR_VERSION:
             *aValue = p_gw->iLCDAPI->iFP_API_MAJOR_VERSION ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_API_MINOR_VERSION:
             *aValue = p_gw->iLCDAPI->iFP_API_MINOR_VERSION ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_IMPLEMENTATION_ID:
             *aValue = p_gw->iLCDAPI->iFP_IMPLEMENTATION_ID ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_IMPL_MAJOR_VERSION:
             *aValue = p_gw->iLCDAPI->iFP_IMPL_MAJOR_VERSION ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_IMPL_MINOR_VERSION:
             *aValue = p_gw->iLCDAPI->iFP_IMPL_MINOR_VERSION ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_X2:
             *aValue = p_gw->iLCDAPI->iCharX2_Position ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CHAR_Y2:
             *aValue = p_gw->iLCDAPI->iCharY2_Position ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_FRAME_RATE:
             *aValue = (uint32_t)p_gw->iLCDAPI->iFrameRate ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CONTRAST:
             *aValue = (uint32_t)p_gw->iLCDAPI->iContrast ;
-            error = GLYPH_ERROR_NONE ;
             break ;
         case GLYPH_CONTRAST_BOOST:
             *aValue = (uint32_t)p_gw->iLCDAPI->iContrastBoost ;
-            error = GLYPH_ERROR_NONE ;
             break ;
+        default:
+            // No valid command found.
+            error = GLYPH_ERROR_ILLEGAL_OPERATION;
+
     }
 
     p_gw->iLCDAPI->iStatusRegister = GLYPH_STATUS_READY ;
