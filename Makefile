@@ -56,6 +56,11 @@ CFLAGS=\
 	-Werror \
 	-std=c99 \
 	-g \
+	-Wconversion \
+	-Wstrict-prototypes \
+	-Wcast-qual \
+	-Wswitch-default \
+	-pedantic \
 	$(END)
 
 # assembler flags with gcc
