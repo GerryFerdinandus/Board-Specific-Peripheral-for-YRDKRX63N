@@ -41,7 +41,7 @@ $(PROJECT_ELF): $(OBJ)
 %.o: %.asm
 	@$(AS) $(ASFLAGS) -c -o $@ $<
 	@echo "AS\t"$$(sha1sum $@)
-	
+
 %.lst: %.elf
 	@$(OBJDUMP) -DS $^ > $@
 	@echo "OBJDUMP\t"$$(sha1sum $@)
@@ -58,7 +58,7 @@ $(PROJECT_ELF): $(OBJ)
 
 # remove all the files created
 clean:
-	@rm -f $(OBJ) $(DEP) $(PROJECT_ELF) $(PROJECT_MAP) $(PROJECT_LST) $(PROJECT_HEX)
+	@rm -f $(OBJ) $(DEP) $(PROJECT_ELF) $(PROJECT_MAP) $(PROJECT_LST) $(PROJECT_HEX) $(SOURCES_LST)
 
 show_flags:
 	@echo "=================" $@ "================="
@@ -77,9 +77,4 @@ show_source:
 show_all: show_flags show_source
 	@echo "PROJECT_NAME\t" $(PROJECT_NAME)
 	@echo
-
-	
-
-
-
 
