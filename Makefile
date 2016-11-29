@@ -57,6 +57,7 @@ CFLAGS=\
 	-std=c99 \
 	-g \
 	-Wconversion \
+	-Wmissing-prototypes \
 	-Wstrict-prototypes \
 	-Wcast-qual \
 	-Wswitch-default \
